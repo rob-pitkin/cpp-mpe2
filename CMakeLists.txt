@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.15)
 project(cpp_pettingzoo)
 
+# Default to Release if no build type specified
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
+
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -64,6 +69,15 @@ pybind11_add_module(_simple_speaker_listener
     cpp_pettingzoo/simple_speaker_listener/cpp/bindings.cpp
     cpp_pettingzoo/simple_speaker_listener/cpp/simple_speaker_listener_env.cpp
     cpp_pettingzoo/simple_speaker_listener/cpp/simple_speaker_listener_scenario.cpp
+    core/world.cpp
+    core/base_env.cpp
+)
+
+# Build pybind11 module for SimpleAdversary
+pybind11_add_module(_simple_adversary
+    cpp_pettingzoo/simple_adversary/cpp/bindings.cpp
+    cpp_pettingzoo/simple_adversary/cpp/simple_adversary_env.cpp
+    cpp_pettingzoo/simple_adversary/cpp/simple_adversary_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )

@@ -83,13 +83,13 @@ float SimpleSpreadScenario::reward(const core::Agent& a,
 
 float SimpleSpreadScenario::global_reward(const core::World& w) const {
   float reward = 0.0f;
-  // For each landmark, find minimum distance to any agent
+  // For each landmark, find minimum Euclidean distance to any agent
   for (const auto& landmark : w.landmarks) {
     float min_dist = std::numeric_limits<float>::max();
     for (const auto& agent : w.agents) {
       float dx = agent.state.p_pos[0] - landmark.state.p_pos[0];
       float dy = agent.state.p_pos[1] - landmark.state.p_pos[1];
-      float dist = dx * dx + dy * dy;
+      float dist = std::sqrt(dx * dx + dy * dy);
       min_dist = std::min(min_dist, dist);
     }
     reward -= min_dist;

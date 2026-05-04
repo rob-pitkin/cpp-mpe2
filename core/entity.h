@@ -49,6 +49,7 @@ class Agent : public Entity {
  public:
   bool silent = false;
   bool blind = false;
+  bool adversary = false;  // Whether this agent is an adversary (for adversarial envs)
   std::optional<float> u_noise = std::nullopt;
   std::optional<float> c_noise = std::nullopt;
   float u_range = 1.0f;
