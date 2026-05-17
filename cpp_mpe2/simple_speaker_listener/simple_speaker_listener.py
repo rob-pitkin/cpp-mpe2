@@ -38,7 +38,6 @@ class raw_env(ParallelEnv, EzPickle):
         continuous_actions: bool = False,
         render_mode: Optional[str] = None,
         dynamic_rescaling: bool = False,
-        local_ratio: float = 0.5,
     ):
         """Initialize Simple Speaker Listener environment.
 
@@ -47,7 +46,6 @@ class raw_env(ParallelEnv, EzPickle):
             continuous_actions: If True, use continuous action space
             render_mode: Rendering mode
             dynamic_rescaling: Dynamic rescaling
-            local_ratio: Ratio of local rewards to global rewards
         """
         EzPickle.__init__(
             self,
@@ -55,14 +53,12 @@ class raw_env(ParallelEnv, EzPickle):
             continuous_actions=continuous_actions,
             render_mode=render_mode,
             dynamic_rescaling=dynamic_rescaling,
-            local_ratio=local_ratio,
         )
 
         self.max_cycles = max_cycles
         self.render_mode = render_mode
         self.dynamic_rescaling = dynamic_rescaling
         self.continuous_actions = continuous_actions
-        self.local_ratio = local_ratio
         if render_mode is not None and render_mode not in ["human", "rgb_array"]:
             raise ValueError(f"Invalid render_mode: {render_mode}. Must be 'human' or 'rgb_array'")
         self.render_mode = render_mode
@@ -72,7 +68,6 @@ class raw_env(ParallelEnv, EzPickle):
             max_cycles=self.max_cycles,
             dynamic_rescaling=self.dynamic_rescaling,
             continuous_actions=self.continuous_actions,
-            local_ratio=self.local_ratio
         )
 
         # Agent setup - 2 agents (speaker and listener)

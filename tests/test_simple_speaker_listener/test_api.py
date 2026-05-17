@@ -73,18 +73,6 @@ def test_num_agents():
     env.close()
 
 
-def test_local_ratio_parameter():
-    """Test that local_ratio parameter is accepted."""
-    env1 = parallel_env(local_ratio=0.0)
-    env2 = parallel_env(local_ratio=1.0)
-
-    env1.reset(seed=42)
-    env2.reset(seed=42)
-
-    env1.close()
-    env2.close()
-
-
 def test_max_cycles():
     """Test that max_cycles parameter controls episode length."""
     env = parallel_env(max_cycles=10)

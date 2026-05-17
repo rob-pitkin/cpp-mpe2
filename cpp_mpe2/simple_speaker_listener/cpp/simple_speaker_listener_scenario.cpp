@@ -78,14 +78,6 @@ float SimpleSpeakerListenerScenario::reward(const core::Agent& agent,
   return -(dx * dx + dy * dy);
 }
 
-float SimpleSpeakerListenerScenario::global_reward(const core::World& w) const {
-  float glob_reward = 0.0f;
-  for (const auto& agent : w.agents) {
-    glob_reward += reward(agent, w);
-  }
-  return glob_reward / static_cast<float>(w.agents.size());
-}
-
 std::vector<float> SimpleSpeakerListenerScenario::observation(
     const core::Agent& agent, const core::World& world) const {
   std::vector<float> obs;

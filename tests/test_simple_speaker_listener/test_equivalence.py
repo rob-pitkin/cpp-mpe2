@@ -123,7 +123,7 @@ def test_multiple_resets():
 
 def test_reward_calculation():
     """Test that rewards are calculated correctly."""
-    env = cpp_env(local_ratio=0.5)
+    env = cpp_env()
     env.reset(seed=42)
 
     actions = {"speaker_0": 0, "listener_0": 0}

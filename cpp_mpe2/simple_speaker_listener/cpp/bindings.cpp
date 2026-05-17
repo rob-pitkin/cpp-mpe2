@@ -9,11 +9,10 @@ PYBIND11_MODULE(_simple_speaker_listener, m) {
   pybind11::class_<
       cpp_mpe2::simple_speaker_listener::SimpleSpeakerListenerEnv>(
       m, "SimpleSpeakerListenerEnv")
-      .def(pybind11::init<int, bool, bool, float>(),
+      .def(pybind11::init<int, bool, bool>(),
            pybind11::arg("max_cycles") = 25,
            pybind11::arg("dynamic_rescaling") = false,
-           pybind11::arg("continuous_actions") = false,
-           pybind11::arg("local_ratio") = 0.5f)
+           pybind11::arg("continuous_actions") = false)
       .def("get_agents", &cpp_mpe2::simple_speaker_listener::
                              SimpleSpeakerListenerEnv::get_agents)
       .def("get_state", &cpp_mpe2::simple_speaker_listener::

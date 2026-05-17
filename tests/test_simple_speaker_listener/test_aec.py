@@ -53,28 +53,5 @@ def test_aec_continuous():
     environment.close()
 
 
-def test_aec_local_ratio():
-    """Test AEC wrapper with different local_ratio values."""
-    for local_ratio in [0.0, 0.5, 1.0]:
-        environment = aec_env(local_ratio=local_ratio)
-        environment.reset(seed=42)
-
-        for agent in environment.agent_iter(max_iter=10):
-            observation, reward, termination, truncation, info = environment.last()
-
-            if termination or truncation:
-                action = None
-            else:
-                # Use appropriate action for each agent
-                if agent == "speaker_0":
-                    action = 0  # comm word 0
-                else:
-                    action = 0  # no movement
-
-            environment.step(action)
-
-        environment.close()
-
-
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

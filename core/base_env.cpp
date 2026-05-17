@@ -92,7 +92,13 @@ State BaseEnv::step(const ActionMap& actions) {
     BoolMap truncations;
     for (const auto& agent : world_.agents) {
       observations[agent.name] = scenario_.observation(agent, world_);
-      rewards[agent.name] = scenario_.reward(agent, world_);
+      float reward = scenario_.reward(agent, world_);
+      if (local_ratio_.has_value()) {
+        float global_reward = scenario_.global_reward(world_);
+        reward = local_ratio_.value() * reward +
+                 (1.0f - local_ratio_.value()) * global_reward;
+      }
+      rewards[agent.name] = reward;
       terminations[agent.name] = false;
       truncations[agent.name] = true;
     }
@@ -155,6 +161,9 @@ State BaseEnv::step(const ActionMap& actions) {
   // Post-step hook: pickup/deposit/respawn logic (no-op for most envs)
   scenario_.post_step(world_);
 
+  // Check scenario-level termination once (e.g. terminate_on_success in tag/line)
+  bool terminal = scenario_.is_terminal(world_);
+
   // Collect observations and rewards for all agents
   ObservationMap observations;
   RewardMap rewards;
@@ -174,12 +183,12 @@ State BaseEnv::step(const ActionMap& actions) {
     }
     rewards[agent.name] = reward;
 
-    terminations[agent.name] = false;
+    terminations[agent.name] = terminal;
     truncations[agent.name] = (timesteps_ >= max_cycles_);
   }
 
-  // Clear agents if episode ends
-  if (timesteps_ >= max_cycles_) {
+  // Clear agents if episode ends (truncation OR scenario termination)
+  if (terminal || timesteps_ >= max_cycles_) {
     agents_.clear();
   }
 

@@ -10,8 +10,7 @@ namespace cpp_mpe2::simple_speaker_listener {
 class SimpleSpeakerListenerEnv : public core::BaseEnv {
  public:
   SimpleSpeakerListenerEnv(int max_cycles = 25, bool dynamic_rescaling = false,
-                           bool continuous_actions = false,
-                           float local_ratio = 0.5f);
+                           bool continuous_actions = false);
 
  private:
   core::World world_;

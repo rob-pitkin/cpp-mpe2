@@ -12,7 +12,6 @@ class SimpleAdversaryScenario : public core::Scenario {
 
   void reset_world(core::World& w) override;
   float reward(const core::Agent& a, const core::World& w) const override;
-  float global_reward(const core::World& w) const override;
   std::vector<float> observation(const core::Agent& a,
                                  const core::World& w) const override;
 

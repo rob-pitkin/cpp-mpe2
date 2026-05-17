@@ -108,14 +108,17 @@ std::vector<float> SimpleSpreadScenario::observation(
     obs.push_back(rel_y);
   }
 
+  // mpe2 layout: ALL other positions first, then ALL communications
+  // (see third-party/mpe2/mpe2/simple_spread/simple_spread.py:348-350).
+  // Interleaving was a silent bug — in SimpleSpread silent=True so comm is
+  // always zeros, but layout still has to match for drop-in equivalence.
   for (const core::Agent& agent : w.agents) {
-    if (&agent == &a) {
-      continue;
-    }
-    float rel_x = agent.state.p_pos[0] - a.state.p_pos[0];
-    float rel_y = agent.state.p_pos[1] - a.state.p_pos[1];
-    obs.push_back(rel_x);
-    obs.push_back(rel_y);
+    if (&agent == &a) continue;
+    obs.push_back(agent.state.p_pos[0] - a.state.p_pos[0]);
+    obs.push_back(agent.state.p_pos[1] - a.state.p_pos[1]);
+  }
+  for (const core::Agent& agent : w.agents) {
+    if (&agent == &a) continue;
     obs.insert(obs.end(), agent.c.begin(), agent.c.end());
   }
 

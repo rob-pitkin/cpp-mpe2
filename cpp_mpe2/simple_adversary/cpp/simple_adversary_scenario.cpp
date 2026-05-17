@@ -41,6 +41,7 @@ void SimpleAdversaryScenario::reset_world(core::World& w) {
   w.agents[0].color = {0.85f, 0.35f, 0.35f};
   w.agents[0].state.p_vel = {0.0f, 0.0f};
   w.agents[0].state.p_pos = {float_dist(rng), float_dist(rng)};
+  w.agents[0].c = std::vector<float>(w.dim_c, 0.0f);
 
   auto* goal_landmark = &w.landmarks[dist(rng)];
   w.agents[0].goal_a = goal_landmark;
@@ -50,6 +51,7 @@ void SimpleAdversaryScenario::reset_world(core::World& w) {
     w.agents[i].goal_a = goal_landmark;
     w.agents[i].state.p_vel = {0.0f, 0.0f};
     w.agents[i].state.p_pos = {float_dist(rng), float_dist(rng)};
+    w.agents[i].c = std::vector<float>(w.dim_c, 0.0f);
   }
 
   for (size_t i = 0; i < n_; ++i) {
@@ -99,17 +101,6 @@ float SimpleAdversaryScenario::reward(const core::Agent& agent,
   }
   compute_reward_cache(world);
   return -cached_min_good_dist_ + cached_adv_dist_;
-}
-
-float SimpleAdversaryScenario::global_reward(const core::World& w) const {
-  // Invalidate cache at the start of a new reward computation pass
-  reward_cache_valid_ = false;
-  float glob_reward = 0.0f;
-  for (const auto& agent : w.agents) {
-    glob_reward += reward(agent, w);
-  }
-  reward_cache_valid_ = false;  // reset for next call
-  return glob_reward / static_cast<float>(w.agents.size());
 }
 
 std::vector<float> SimpleAdversaryScenario::observation(
