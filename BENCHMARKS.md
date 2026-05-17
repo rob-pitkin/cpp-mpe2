@@ -34,12 +34,18 @@ Benchmarks comparing C++ implementation (cpp-pettingzoo) vs pure Python implemen
 | **SimpleFormation** | Resets | 399,064 | 39,599 | **10.08x** |
 | | Steps | 136,006 | 6,297 | **21.60x** |
 | | Episodes | 5,515 | 253 | **21.83x** |
+| **SimpleLine** | Resets | 358,930 | 19,817 | **18.11x** |
+| | Steps | 130,706 | 6,586 | **19.85x** |
+| | Episodes | 5,286 | 263 | **20.09x** |
+| **CollectTreasure** | Resets | 40,690 | 1,992 | **20.42x** |
+| | Steps | 29,200 | 735 | **39.72x** |
+| | Episodes | 1,172 | 29 | **39.84x** |
 
 ## Key Findings
 
 ### Overall Performance
-- **Average speedup: 15.07x faster** than pure Python MPE2
-- **Range: 6.23x - 21.83x** depending on environment and operation
+- **Average speedup: 17.32x faster** than pure Python MPE2
+- **Range: 6.23x - 39.84x** depending on environment and operation
 
 ### Environment-Specific Analysis
 
@@ -82,11 +88,21 @@ Benchmarks comparing C++ implementation (cpp-pettingzoo) vs pure Python implemen
 - Reset speedup (10.08x) is moderate: the C++ reset is lightweight (random positions only) so Python wrapper overhead is proportionally larger
 - Pure global reward (local_ratio=0.0) means all 4 agents share the same scalar per step; the mutable cache (`cache_valid_` flag) ensures the Munkres solve runs exactly once per step even though global_reward() is called N times
 
+**SimpleLine (4 cooperative agents, 2 line-endpoint landmarks):**
+- Strong consistent speedup: **18.11x / 19.85x / 20.09x** across all operations
+- Target positions are fixed at reset (the line doesn't move), so `compute_line` only solves Munkres each step — no per-step target geometry recomputation unlike SimpleFormation's rotating circle
+- mpe2's reset is heavier than Formation's (placing lm1 via angular search loop in Python) which inflates the reset speedup to 18x despite 2 agents vs Formation's 1 landmark reset
+
+**CollectTreasure (6 collectors + 2 deposits, 6 treasure landmarks):**
+- **Highest step/episode speedup in the suite: 39.72x / 39.84x** — the gap comes from mpe2's Python loop over all (collector, treasure) and (collector, deposit) pairs for pickup/delivery/reward, plus distance-sorted observation construction every step; all of this is O(agents × treasures) Python iteration vs tight C++ loops
+- Reset speedup (20.42x) is also strong: mpe2 allocates numpy arrays per-agent per-reset; C++ reuses pre-allocated vectors
+- The `post_step` hook (pickup → respawn → delivery, all in C++ before reward computation) is the key architectural win — mpe2 had to override `_execute_world_step` entirely for this; our virtual no-op in BaseEnv adds zero overhead to all other environments
+
 ### Performance Insights
 
-1. **Release build matters significantly**: Prior Debug-mode numbers showed 2-4x; Release shows 9-21x
+1. **Release build matters significantly**: Prior Debug-mode numbers showed 2-4x; Release shows 9-40x
 2. **Step/episode speedups exceed reset speedups**: Python wrapper overhead is proportionally larger for resets (one-time Python object construction) vs steps (pure physics loop)
-3. **More agents = larger step speedup**: SimpleSpread (3 agents) achieves the highest step/episode speedup at 20.89x; its reset speedup (8.78x) is the lowest because reset cost is dominated by Python wrapper overhead rather than physics computation
+3. **Algorithmic complexity matters most**: CollectTreasure's 40x speedup vs SimpleSpread's 21x — both have 8 agents, but CollectTreasure's O(agents × treasures) pickup/reward loops in Python are far slower than SimpleSpread's simpler reward structure
 4. **Reward caching pays off**: SimpleAdversary's per-step reward cache (mutable members, invalidated once per step) eliminated O(N) redundant sqrt calls with no correctness tradeoff
 
 ## Running Benchmarks
@@ -115,6 +131,12 @@ uv run python cpp_pettingzoo/benchmark_simple_push.py
 
 # SimpleFormation environment
 uv run python cpp_pettingzoo/benchmark_simple_formation.py
+
+# SimpleLine environment
+uv run python cpp_pettingzoo/benchmark_simple_line.py
+
+# CollectTreasure environment
+uv run python cpp_pettingzoo/benchmark_collect_treasure.py
 ```
 
 ## Benchmark Details
@@ -125,4 +147,4 @@ Each benchmark measures three operations:
 2. **Steps**: Environment dynamics with random actions (1M steps, auto-reset on done)
 3. **Episodes**: Complete episodes with 25 steps each (100K episodes)
 
-All benchmarks use discrete action spaces. Communication in SimpleReference uses Discrete(50) (10 communication words × 5 movement actions). SimpleSpeakerListener uses asymmetric discrete action spaces: speaker Discrete(3), listener Discrete(5). SimpleAdversary uses Discrete(5) for all agents (movement only, no communication despite dim_c=2). SimpleTag uses Discrete(5) for all agents (3 adversaries + 1 good agent) with default full observability (no partial observability neighbors set). SimplePush uses Discrete(5) for both agents; the good agent's observation encodes goal identity via landmark colors. SimpleFormation uses Discrete(5) for all 4 agents with a single central landmark; optimal agent-to-slot matching uses the Munkres algorithm (munkres-cpp) with results cached per step.
+All benchmarks use discrete action spaces. Communication in SimpleReference uses Discrete(50) (10 communication words × 5 movement actions). SimpleSpeakerListener uses asymmetric discrete action spaces: speaker Discrete(3), listener Discrete(5). SimpleAdversary uses Discrete(5) for all agents (movement only, no communication despite dim_c=2). SimpleTag uses Discrete(5) for all agents (3 adversaries + 1 good agent) with default full observability (no partial observability neighbors set). SimplePush uses Discrete(5) for both agents; the good agent's observation encodes goal identity via landmark colors. SimpleFormation uses Discrete(5) for all 4 agents with a single central landmark; optimal agent-to-slot matching uses the Munkres algorithm (munkres-cpp) with results cached per step. SimpleLine uses Discrete(5) for all 4 agents with 2 line-endpoint landmarks; target positions are fixed at reset and reused across all steps of the episode. CollectTreasure uses Discrete(5) for all 8 agents (6 collectors + 2 deposits) with 6 treasure landmarks; pickup/delivery/respawn logic runs in a post_step hook between physics and reward computation.

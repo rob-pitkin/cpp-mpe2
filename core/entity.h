@@ -43,6 +43,8 @@ class Landmark : public Entity {
  public:
   bool boundary = false;
   int index = 0;
+  bool alive = true;
+  int treasure_type = 0;
 
   Landmark() = default;
   explicit Landmark(std::string n) : Entity(std::move(n)) {};
@@ -60,6 +62,9 @@ class Agent : public Entity {
   Action action;
   Entity* goal_a = nullptr;
   Entity* goal_b = nullptr;
+  bool collector = false;
+  std::optional<int> holding = std::nullopt;
+  int deposit_type = -1;
 
   Agent() { movable = true; }
   explicit Agent(std::string n, size_t dim_c)

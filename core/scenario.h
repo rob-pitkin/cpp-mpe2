@@ -29,6 +29,7 @@ public:
   virtual bool is_terminal(const World& w) const {
     return false;
   }
+  virtual void post_step(World& w) {}
 };
 
 }  // namespace cpp_pettingzoo::core

@@ -152,6 +152,9 @@ State BaseEnv::step(const ActionMap& actions) {
   world_.step();
   timesteps_++;
 
+  // Post-step hook: pickup/deposit/respawn logic (no-op for most envs)
+  scenario_.post_step(world_);
+
   // Collect observations and rewards for all agents
   ObservationMap observations;
   RewardMap rewards;

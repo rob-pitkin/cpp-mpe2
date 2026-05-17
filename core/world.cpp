@@ -39,10 +39,16 @@ void World::integrate_state(const ForceVector& p_force) {
       e->state.p_vel[1] += (p_force[i].value()[1] / e->mass()) * dt_;
     }
 
+    // Clamp NaN/inf that can arise from extreme continuous actions
+    if (!std::isfinite(e->state.p_vel[0])) e->state.p_vel[0] = 0.0f;
+    if (!std::isfinite(e->state.p_vel[1])) e->state.p_vel[1] = 0.0f;
+    if (!std::isfinite(e->state.p_pos[0])) e->state.p_pos[0] = 0.0f;
+    if (!std::isfinite(e->state.p_pos[1])) e->state.p_pos[1] = 0.0f;
+
     if (e->max_speed.has_value()) {
       float speed = std::sqrt(e->state.p_vel[0] * e->state.p_vel[0] +
                               e->state.p_vel[1] * e->state.p_vel[1]);
-      if (speed > e->max_speed.value()) {
+      if (speed > e->max_speed.value() && speed > 0.0f) {
         e->state.p_vel[0] = e->state.p_vel[0] / speed * e->max_speed.value();
         e->state.p_vel[1] = e->state.p_vel[1] / speed * e->max_speed.value();
       }

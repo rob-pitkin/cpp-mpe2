@@ -108,3 +108,21 @@ pybind11_add_module(_simple_tag
     core/world.cpp
     core/base_env.cpp
 )
+
+# Build pybind11 module for SimpleLine
+pybind11_add_module(_simple_line
+    cpp_pettingzoo/simple_line/cpp/bindings.cpp
+    cpp_pettingzoo/simple_line/cpp/simple_line_env.cpp
+    cpp_pettingzoo/simple_line/cpp/simple_line_scenario.cpp
+    core/world.cpp
+    core/base_env.cpp
+)
+
+# Build pybind11 module for CollectTreasure
+pybind11_add_module(_collect_treasure
+    cpp_pettingzoo/collect_treasure/cpp/bindings.cpp
+    cpp_pettingzoo/collect_treasure/cpp/collect_treasure_env.cpp
+    cpp_pettingzoo/collect_treasure/cpp/collect_treasure_scenario.cpp
+    core/world.cpp
+    core/base_env.cpp
+)
