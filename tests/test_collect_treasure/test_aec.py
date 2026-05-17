@@ -9,7 +9,7 @@ import numpy as np
 import pytest
 from pettingzoo.test import api_test as aec_api_test
 
-from cpp_pettingzoo.collect_treasure.collect_treasure import env as treasure_env
+from cpp_mpe2.collect_treasure.collect_treasure import env as treasure_env
 
 
 def test_aec_api():

@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-namespace cpp_pettingzoo::core {
+namespace cpp_mpe2::core {
 
 struct EntityState {
   std::array<float, 2> p_pos;
@@ -75,6 +75,6 @@ class Agent : public Entity {
   };
 };
 
-}  // namespace cpp_pettingzoo::core
+}  // namespace cpp_mpe2::core
 
 #endif  // ENTITY_H_

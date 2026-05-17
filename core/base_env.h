@@ -10,7 +10,7 @@
 #include "types.h"
 #include "world.h"
 
-namespace cpp_pettingzoo::core {
+namespace cpp_mpe2::core {
 
 class BaseEnv {
  public:
@@ -40,6 +40,6 @@ class BaseEnv {
       const std::vector<float>& action, const Agent& a) const;
 };
 
-}  // namespace cpp_pettingzoo::core
+}  // namespace cpp_mpe2::core
 
 #endif  // CORE_BASE_ENV_H_

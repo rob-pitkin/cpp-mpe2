@@ -10,7 +10,7 @@ import pytest
 from mpe2 import collect_treasure_v1
 from pettingzoo.test import parallel_api_test
 
-from cpp_pettingzoo.collect_treasure.collect_treasure import parallel_env as cpp_env
+from cpp_mpe2.collect_treasure.collect_treasure import parallel_env as cpp_env
 
 
 def test_api_default():

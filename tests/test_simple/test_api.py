@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import pytest
 import gymnasium
-from cpp_pettingzoo.simple import parallel_env
+from cpp_mpe2.simple import parallel_env
 from mpe2 import simple_v3
 import numpy as np
 

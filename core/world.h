@@ -7,7 +7,7 @@
 
 #include "entity.h"
 
-namespace cpp_pettingzoo::core {
+namespace cpp_mpe2::core {
 
 using ForceVector = std::vector<std::optional<std::array<float, 2>>>;
 using Force = std::array<float, 2>;
@@ -48,6 +48,6 @@ class World {
   float sample_normal(float mean, float stddev);
 };
 
-}  // namespace cpp_pettingzoo::core
+}  // namespace cpp_mpe2::core
 
 #endif  // WORLD_H_

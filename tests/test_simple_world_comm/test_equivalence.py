@@ -11,7 +11,7 @@ import pytest
 from mpe2 import simple_world_comm_v3
 from pettingzoo.test import parallel_api_test
 
-from cpp_pettingzoo.simple_world_comm.simple_world_comm import parallel_env as cpp_env
+from cpp_mpe2.simple_world_comm.simple_world_comm import parallel_env as cpp_env
 
 
 def test_api_default():

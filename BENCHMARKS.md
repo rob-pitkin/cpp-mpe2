@@ -1,6 +1,6 @@
-# cpp-pettingzoo Performance Benchmarks
+# cpp-mpe2 Performance Benchmarks
 
-Benchmarks comparing C++ implementation (cpp-pettingzoo) vs pure Python implementation (mpe2).
+Benchmarks comparing C++ implementation (cpp-mpe2) vs pure Python implementation (mpe2).
 
 **Hardware:** M1 MacBook Pro  
 **Build:** Release (`-O2`, CMake default Release flags)  
@@ -128,40 +128,40 @@ Benchmarks comparing C++ implementation (cpp-pettingzoo) vs pure Python implemen
 
 ```bash
 # Simple environment
-uv run python cpp_pettingzoo/benchmark_simple.py
+uv run python cpp_mpe2/benchmark_simple.py
 
 # SimpleSpread environment
-uv run python cpp_pettingzoo/benchmark_simple_spread.py
+uv run python cpp_mpe2/benchmark_simple_spread.py
 
 # SimpleReference environment
-uv run python cpp_pettingzoo/benchmark_simple_reference.py
+uv run python cpp_mpe2/benchmark_simple_reference.py
 
 # SimpleSpeakerListener environment
-uv run python cpp_pettingzoo/benchmark_simple_speaker_listener.py
+uv run python cpp_mpe2/benchmark_simple_speaker_listener.py
 
 # SimpleAdversary environment
-uv run python cpp_pettingzoo/benchmark_simple_adversary.py
+uv run python cpp_mpe2/benchmark_simple_adversary.py
 
 # SimpleTag environment
-uv run python cpp_pettingzoo/benchmark_simple_tag.py
+uv run python cpp_mpe2/benchmark_simple_tag.py
 
 # SimplePush environment
-uv run python cpp_pettingzoo/benchmark_simple_push.py
+uv run python cpp_mpe2/benchmark_simple_push.py
 
 # SimpleFormation environment
-uv run python cpp_pettingzoo/benchmark_simple_formation.py
+uv run python cpp_mpe2/benchmark_simple_formation.py
 
 # SimpleLine environment
-uv run python cpp_pettingzoo/benchmark_simple_line.py
+uv run python cpp_mpe2/benchmark_simple_line.py
 
 # CollectTreasure environment
-uv run python cpp_pettingzoo/benchmark_collect_treasure.py
+uv run python cpp_mpe2/benchmark_collect_treasure.py
 
 # SimpleWorldComm environment
-uv run python cpp_pettingzoo/benchmark_simple_world_comm.py
+uv run python cpp_mpe2/benchmark_simple_world_comm.py
 
 # SimpleCrypto environment
-uv run python cpp_pettingzoo/benchmark_simple_crypto.py
+uv run python cpp_mpe2/benchmark_simple_crypto.py
 ```
 
 ## Benchmark Details

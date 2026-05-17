@@ -1,4 +1,4 @@
-# cpp-pettingzoo
+# cpp-mpe2
 
 Fast C++ implementations of PettingZoo MPE environments with Python bindings.
 
@@ -15,8 +15,8 @@ Provide high-performance C++ implementations of Multi-Agent Particle Environment
 ## Structure
 
 ```
-cpp-pettingzoo/
-├── cpp_pettingzoo/          # Python package
+cpp-mpe2/
+├── cpp_mpe2/          # Python package
 │   ├── simple/              # Simple environment
 │   │   ├── simple.py        # Python PettingZoo wrapper
 │   │   └── cpp/             # C++ implementation
@@ -43,7 +43,7 @@ pip install -e .
 ## Usage
 
 ```python
-from cpp_pettingzoo.simple import SimpleEnv
+from cpp_mpe2.simple import SimpleEnv
 
 env = SimpleEnv()
 observations = env.reset()

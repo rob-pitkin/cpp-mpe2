@@ -10,7 +10,7 @@ import pytest
 from mpe2 import simple_line_v1
 from pettingzoo.test import parallel_api_test
 
-from cpp_pettingzoo.simple_line.simple_line import parallel_env as cpp_env
+from cpp_mpe2.simple_line.simple_line import parallel_env as cpp_env
 
 
 def test_api_default():

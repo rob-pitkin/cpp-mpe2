@@ -1,5 +1,5 @@
 [project]
-name = "cpp-pettingzoo"
+name = "cpp-mpe2"
 version = "0.1.0"
 description = "Fast C++ implementations of PettingZoo MPE environments with Python bindings"
 requires-python = ">=3.10"

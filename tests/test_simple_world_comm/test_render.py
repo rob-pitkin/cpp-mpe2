@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 import numpy as np
 import pytest
 
-from cpp_pettingzoo.simple_world_comm.simple_world_comm import parallel_env
+from cpp_mpe2.simple_world_comm.simple_world_comm import parallel_env
 
 
 def test_rgb_array_render():

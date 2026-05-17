@@ -265,7 +265,7 @@ def test_observation_shape():
 
 def test_entity_sizes_match_mpe2():
     """Test that entity sizes match MPE2 defaults."""
-    from cpp_pettingzoo.simple import parallel_env
+    from cpp_mpe2.simple import parallel_env
 
     # Create environment with render_mode to access world
     env = parallel_env(render_mode="rgb_array")

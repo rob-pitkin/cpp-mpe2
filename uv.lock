@@ -25,7 +25,7 @@ wheels = [
 ]
 
 [[package]]
-name = "cpp-pettingzoo"
+name = "cpp-mpe2"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

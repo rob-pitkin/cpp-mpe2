@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 import numpy as np
 import pytest
 
-from cpp_pettingzoo.simple_push.simple_push import parallel_env as cpp_env
+from cpp_mpe2.simple_push.simple_push import parallel_env as cpp_env
 
 
 def test_reset_deterministic():

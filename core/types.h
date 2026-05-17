@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <vector>
 
-namespace cpp_pettingzoo {
+namespace cpp_mpe2 {
 
 // Action force sensitivity constant (shared across all MPE environments)
 static constexpr float SENSITIVITY = 5.0;
@@ -28,6 +28,6 @@ struct State {
   BoolMap truncations;
 };
 
-}  // namespace cpp_pettingzoo
+}  // namespace cpp_mpe2
 
 #endif  // TYPES_H_

@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 import pytest
 from pettingzoo.test import parallel_api_test
 
-from cpp_pettingzoo.collect_treasure.collect_treasure import parallel_env
+from cpp_mpe2.collect_treasure.collect_treasure import parallel_env
 
 
 def test_parallel_api_default():

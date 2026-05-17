@@ -4,7 +4,7 @@
 #include "base_env.h"
 #include "core/types.h"
 
-namespace cpp_pettingzoo::core {
+namespace cpp_mpe2::core {
 
 BaseEnv::BaseEnv(Scenario& scenario, World& world, int max_cycles,
                  bool dynamic_rescaling, bool continuous_actions,
@@ -223,4 +223,4 @@ RenderState BaseEnv::get_render_state() const {
   return state;
 }
 
-}  // namespace cpp_pettingzoo::core
+}  // namespace cpp_mpe2::core

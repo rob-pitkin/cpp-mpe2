@@ -4,7 +4,7 @@
 
 #include "world.h"
 
-namespace cpp_pettingzoo::core {
+namespace cpp_mpe2::core {
 
 World::World(uint32_t seed) {
   rng_ = std::mt19937(seed);
@@ -156,4 +156,4 @@ float World::sample_normal(float mean, float stddev) {
   return dist(rng_);
 }
 
-}  // namespace cpp_pettingzoo::core
+}  // namespace cpp_mpe2::core

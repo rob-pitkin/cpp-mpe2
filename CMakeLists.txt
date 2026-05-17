@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(cpp_pettingzoo)
+project(cpp_mpe2)
 
 # Default to Release if no build type specified
 if(NOT CMAKE_BUILD_TYPE)
@@ -39,108 +39,108 @@ find_package(pybind11 REQUIRED)
 
 # Build pybind11 module for Simple
 pybind11_add_module(_simple_core
-    cpp_pettingzoo/simple/cpp/bindings.cpp
-    cpp_pettingzoo/simple/cpp/simple_env.cpp
-    cpp_pettingzoo/simple/cpp/simple_scenario.cpp
+    cpp_mpe2/simple/cpp/bindings.cpp
+    cpp_mpe2/simple/cpp/simple_env.cpp
+    cpp_mpe2/simple/cpp/simple_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimpleSpread
 pybind11_add_module(_simple_spread
-    cpp_pettingzoo/simple_spread/cpp/bindings.cpp
-    cpp_pettingzoo/simple_spread/cpp/simple_spread_env.cpp
-    cpp_pettingzoo/simple_spread/cpp/simple_spread_scenario.cpp
+    cpp_mpe2/simple_spread/cpp/bindings.cpp
+    cpp_mpe2/simple_spread/cpp/simple_spread_env.cpp
+    cpp_mpe2/simple_spread/cpp/simple_spread_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimpleReference
 pybind11_add_module(_simple_reference
-    cpp_pettingzoo/simple_reference/cpp/bindings.cpp
-    cpp_pettingzoo/simple_reference/cpp/simple_reference_env.cpp
-    cpp_pettingzoo/simple_reference/cpp/simple_reference_scenario.cpp
+    cpp_mpe2/simple_reference/cpp/bindings.cpp
+    cpp_mpe2/simple_reference/cpp/simple_reference_env.cpp
+    cpp_mpe2/simple_reference/cpp/simple_reference_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimpleSpeakerListener
 pybind11_add_module(_simple_speaker_listener
-    cpp_pettingzoo/simple_speaker_listener/cpp/bindings.cpp
-    cpp_pettingzoo/simple_speaker_listener/cpp/simple_speaker_listener_env.cpp
-    cpp_pettingzoo/simple_speaker_listener/cpp/simple_speaker_listener_scenario.cpp
+    cpp_mpe2/simple_speaker_listener/cpp/bindings.cpp
+    cpp_mpe2/simple_speaker_listener/cpp/simple_speaker_listener_env.cpp
+    cpp_mpe2/simple_speaker_listener/cpp/simple_speaker_listener_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimpleAdversary
 pybind11_add_module(_simple_adversary
-    cpp_pettingzoo/simple_adversary/cpp/bindings.cpp
-    cpp_pettingzoo/simple_adversary/cpp/simple_adversary_env.cpp
-    cpp_pettingzoo/simple_adversary/cpp/simple_adversary_scenario.cpp
+    cpp_mpe2/simple_adversary/cpp/bindings.cpp
+    cpp_mpe2/simple_adversary/cpp/simple_adversary_env.cpp
+    cpp_mpe2/simple_adversary/cpp/simple_adversary_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimpleFormation
 pybind11_add_module(_simple_formation
-    cpp_pettingzoo/simple_formation/cpp/bindings.cpp
-    cpp_pettingzoo/simple_formation/cpp/simple_formation_env.cpp
-    cpp_pettingzoo/simple_formation/cpp/simple_formation_scenario.cpp
+    cpp_mpe2/simple_formation/cpp/bindings.cpp
+    cpp_mpe2/simple_formation/cpp/simple_formation_env.cpp
+    cpp_mpe2/simple_formation/cpp/simple_formation_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimplePush
 pybind11_add_module(_simple_push
-    cpp_pettingzoo/simple_push/cpp/bindings.cpp
-    cpp_pettingzoo/simple_push/cpp/simple_push_env.cpp
-    cpp_pettingzoo/simple_push/cpp/simple_push_scenario.cpp
+    cpp_mpe2/simple_push/cpp/bindings.cpp
+    cpp_mpe2/simple_push/cpp/simple_push_env.cpp
+    cpp_mpe2/simple_push/cpp/simple_push_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimpleTag
 pybind11_add_module(_simple_tag
-    cpp_pettingzoo/simple_tag/cpp/bindings.cpp
-    cpp_pettingzoo/simple_tag/cpp/simple_tag_env.cpp
-    cpp_pettingzoo/simple_tag/cpp/simple_tag_scenario.cpp
+    cpp_mpe2/simple_tag/cpp/bindings.cpp
+    cpp_mpe2/simple_tag/cpp/simple_tag_env.cpp
+    cpp_mpe2/simple_tag/cpp/simple_tag_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimpleLine
 pybind11_add_module(_simple_line
-    cpp_pettingzoo/simple_line/cpp/bindings.cpp
-    cpp_pettingzoo/simple_line/cpp/simple_line_env.cpp
-    cpp_pettingzoo/simple_line/cpp/simple_line_scenario.cpp
+    cpp_mpe2/simple_line/cpp/bindings.cpp
+    cpp_mpe2/simple_line/cpp/simple_line_env.cpp
+    cpp_mpe2/simple_line/cpp/simple_line_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for CollectTreasure
 pybind11_add_module(_collect_treasure
-    cpp_pettingzoo/collect_treasure/cpp/bindings.cpp
-    cpp_pettingzoo/collect_treasure/cpp/collect_treasure_env.cpp
-    cpp_pettingzoo/collect_treasure/cpp/collect_treasure_scenario.cpp
+    cpp_mpe2/collect_treasure/cpp/bindings.cpp
+    cpp_mpe2/collect_treasure/cpp/collect_treasure_env.cpp
+    cpp_mpe2/collect_treasure/cpp/collect_treasure_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimpleWorldComm
 pybind11_add_module(_simple_world_comm
-    cpp_pettingzoo/simple_world_comm/cpp/bindings.cpp
-    cpp_pettingzoo/simple_world_comm/cpp/simple_world_comm_env.cpp
-    cpp_pettingzoo/simple_world_comm/cpp/simple_world_comm_scenario.cpp
+    cpp_mpe2/simple_world_comm/cpp/bindings.cpp
+    cpp_mpe2/simple_world_comm/cpp/simple_world_comm_env.cpp
+    cpp_mpe2/simple_world_comm/cpp/simple_world_comm_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )
 
 # Build pybind11 module for SimpleCrypto
 pybind11_add_module(_simple_crypto
-    cpp_pettingzoo/simple_crypto/cpp/bindings.cpp
-    cpp_pettingzoo/simple_crypto/cpp/simple_crypto_env.cpp
-    cpp_pettingzoo/simple_crypto/cpp/simple_crypto_scenario.cpp
+    cpp_mpe2/simple_crypto/cpp/bindings.cpp
+    cpp_mpe2/simple_crypto/cpp/simple_crypto_env.cpp
+    cpp_mpe2/simple_crypto/cpp/simple_crypto_scenario.cpp
     core/world.cpp
     core/base_env.cpp
 )

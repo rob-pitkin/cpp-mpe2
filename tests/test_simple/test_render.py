@@ -5,7 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from cpp_pettingzoo.simple import parallel_env
+from cpp_mpe2.simple import parallel_env
 import numpy as np
 
 

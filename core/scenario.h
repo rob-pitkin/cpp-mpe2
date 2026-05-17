@@ -8,7 +8,7 @@
 #include "entity.h"
 #include "world.h"
 
-namespace cpp_pettingzoo::core {
+namespace cpp_mpe2::core {
 
 class Scenario {
 public:
@@ -32,6 +32,6 @@ public:
   virtual void post_step(World& w) {}
 };
 
-}  // namespace cpp_pettingzoo::core
+}  // namespace cpp_mpe2::core
 
 #endif  // SCENARIO_H_
